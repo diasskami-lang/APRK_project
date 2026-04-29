@@ -246,7 +246,7 @@ Upload photo → detect person.
 
 ---
 
-# 🔥 Run Full Project
+#Run Full Project
 
 ## Terminal 1
 
