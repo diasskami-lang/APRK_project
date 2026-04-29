@@ -1,15 +1,3 @@
-A full-stack intelligent web system for managing and recognizing government employees of Kazakhstan.
-
-This project combines:
-
-* **Frontend:** HTML, CSS, JavaScript
-* **Backend:** Node.js + Express.js
-* **Database:** PostgreSQL
-* **AI Recognition API:** FastAPI + InsightFace
-* **Authentication:** Admin / User roles
-
----
-
 # 📌 Project Overview
 
 # Technologies Used
@@ -262,10 +250,10 @@ uvicorn api:app --reload
 
 ## Browser
 
-Open:
+Runs on:
 
 ```bash
-index.html
+http://localhost:8000
 ```
 
 
