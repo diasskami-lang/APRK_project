@@ -64,16 +64,5 @@ app.listen(3000,()=>{
     console.log("Server running on 3000");
 });
 
-app.listen('/people/:id', async(req,res)=>{
-    await pool.query(
-        'listen all from people',
-        [req.params.id]
-    );
-    res.json({message:"deleted"});
-});
-
-app.listen(3000,()=>{
-    console.log("Server running on 3000");
-});
 
 
