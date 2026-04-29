@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Gov Dashboard</title>
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Arial;
+}
+
+body{
+    background:#f1f5f9;
+    padding:30px;
+}
+
+header{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    margin-bottom:25px;
+}
+
+h1{
+    color:#0f172a;
+}
+
+.logout{
+    background:#ef4444;
+    color:white;
+    border:none;
+    padding:12px 18px;
+    border-radius:12px;
+    cursor:pointer;
+}
+
+.top-panel{
+    display:flex;
+    gap:15px;
+    margin-bottom:20px;
+    flex-wrap:wrap;
+}
+
+input{
+    padding:12px;
+    border-radius:12px;
+    border:1px solid #cbd5e1;
+    min-width:250px;
+}
+
+button{
+    padding:12px 18px;
+    border:none;
+    border-radius:12px;
+    cursor:pointer;
+    font-weight:bold;
+}
+
+.add{
+    background:#16a34a;
+    color:white;
+}
+
+.edit{
+    background:#f59e0b;
+    color:white;
+}
+
+.search-btn{
+    background:#2563eb;
+    color:white;
+}
+
+table{
+    width:100%;
+    border-collapse:collapse;
+    background:white;
+    border-radius:20px;
+    overflow:hidden;
+    box-shadow:0 10px 25px rgba(0,0,0,0.08);
+}
+
+th{
+    background:#0f172a;
+    color:white;
+    padding:15px;
+}
+
+td{
+    padding:14px;
+    text-align:center;
+    border-bottom:1px solid #eee;
+}
+
+tr:hover{
+    background:#f8fafc;
+}
+</style>
+</head>
+
+<body>
+
+<header>
+<h1>Government Dashboard</h1>
+<button class="logout" onclick="logout()">Выйти</button>
+</header>
+
+<div class="top-panel">
+<input type="text" placeholder="Поиск людей...">
+
+<button class="search-btn">Поиск</button>
+
+<button class="add" id="addBtn">+ Добавить</button>
+
+<button class="edit" id="editBtn">Редактировать</button>
+</div>
+
+<table>
+<thead>
+<tr>
+<th>Фото</th>
+<th>ФИО</th>
+<th>Должность</th>
+<th>Министерство</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>👤</td>
+<td>Диас Example</td>
+<td>IT Engineer</td>
+<td>Digital Ministry</td>
+</tr>
+
+<tr>
+<td>👤</td>
+<td>Admin Example</td>
+<td>Director</td>
+<td>Security Dept</td>
+</tr>
+</tbody>
+</table>
+
+<script>
+
+let role = localStorage.getItem("role");
+
+if(role !== "admin"){
+    document.getElementById("addBtn").style.display="none";
+    document.getElementById("editBtn").style.display="none";
+}
+
+function logout(){
+    localStorage.removeItem("role");
+    window.location.href="index.html";
+}
+</script>
+
+</body>
+</html>

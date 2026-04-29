@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Вход в систему</title>
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Arial, sans-serif;
+}
+
+body{
+    height:100vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    background:linear-gradient(135deg,#0f172a,#1e293b,#334155);
+}
+
+.login-box{
+    width:400px;
+    background:rgba(255,255,255,0.08);
+    backdrop-filter:blur(15px);
+    border:1px solid rgba(255,255,255,0.15);
+    border-radius:25px;
+    padding:40px;
+    box-shadow:0 15px 35px rgba(0,0,0,0.3);
+}
+
+.login-box h1{
+    color:white;
+    text-align:center;
+    margin-bottom:30px;
+}
+
+input{
+    width:100%;
+    padding:14px;
+    margin-bottom:15px;
+    border:none;
+    border-radius:12px;
+    outline:none;
+    font-size:15px;
+}
+
+button{
+    width:100%;
+    padding:14px;
+    border:none;
+    border-radius:12px;
+    background:#2563eb;
+    color:white;
+    font-size:16px;
+    font-weight:bold;
+    cursor:pointer;
+    transition:0.3s;
+}
+
+button:hover{
+    background:#1d4ed8;
+}
+
+.user-btn{
+    margin-top:10px;
+    background:#16a34a;
+}
+
+.user-btn:hover{
+    background:#15803d;
+}
+
+p{
+    color:#cbd5e1;
+    text-align:center;
+    margin-top:15px;
+}
+</style>
+</head>
+
+<body>
+
+<div class="login-box">
+<h1>Gov System Login</h1>
+
+<input type="text" id="login" placeholder="Логин">
+<input type="password" id="password" placeholder="Пароль">
+
+<button onclick="login()">Войти как Admin</button>
+<button class="user-btn" onclick="guestLogin()">Войти как User</button>
+
+<p>Secure Government Access</p>
+</div>
+
+<script>
+function login(){
+
+    let login = document.getElementById("login").value;
+    let password = document.getElementById("password").value;
+
+    if(login === "admin" && password === "1234"){
+        localStorage.setItem("role","admin");
+        window.location.href = "main.html";
+    }else{
+        alert("Неверный логин или пароль");
+    }
+}
+
+function guestLogin(){
+    localStorage.setItem("role","user");
+    window.location.href = "main.html";
+}
+</script>
+
+</body>
+</html>
