@@ -2,117 +2,124 @@
 <html lang="ru">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Вход в систему</title>
+<title>Login</title>
 
 <style>
-*{
-    margin:0;
-    padding:0;
-    box-sizing:border-box;
-    font-family:Arial, sans-serif;
-}
-
 body{
+    margin:0;
     height:100vh;
     display:flex;
     justify-content:center;
     align-items:center;
-    background:linear-gradient(135deg,#0f172a,#1e293b,#334155);
+    font-family:Arial;
+    background:linear-gradient(135deg,#2c3e50,#3498db);
 }
 
-.login-box{
-    width:400px;
-    background:rgba(255,255,255,0.08);
-    backdrop-filter:blur(15px);
-    border:1px solid rgba(255,255,255,0.15);
-    border-radius:25px;
-    padding:40px;
-    box-shadow:0 15px 35px rgba(0,0,0,0.3);
-}
-
-.login-box h1{
-    color:white;
+.box{
+    background:white;
+    padding:30px;
+    border-radius:15px;
+    width:320px;
     text-align:center;
-    margin-bottom:30px;
+    box-shadow:0 10px 25px rgba(0,0,0,0.3);
+}
+
+h2{
+    margin-bottom:15px;
+    color:#2c3e50;
 }
 
 input{
     width:100%;
-    padding:14px;
-    margin-bottom:15px;
-    border:none;
-    border-radius:12px;
+    padding:10px;
+    margin:8px 0;
+    border-radius:10px;
+    border:1px solid #ccc;
     outline:none;
-    font-size:15px;
 }
 
 button{
     width:100%;
-    padding:14px;
+    padding:10px;
     border:none;
-    border-radius:12px;
-    background:#2563eb;
+    border-radius:10px;
+    background:#27ae60;
     color:white;
-    font-size:16px;
     font-weight:bold;
     cursor:pointer;
-    transition:0.3s;
+    margin-top:10px;
 }
 
 button:hover{
-    background:#1d4ed8;
+    background:#1e8449;
 }
 
-.user-btn{
-    margin-top:10px;
-    background:#16a34a;
+.secondary{
+    background:#3498db;
 }
 
-.user-btn:hover{
-    background:#15803d;
+.secondary:hover{
+    background:#1f6fa8;
 }
 
-p{
-    color:#cbd5e1;
-    text-align:center;
-    margin-top:15px;
-}
 </style>
 </head>
 
 <body>
 
-<div class="login-box">
-<h1>Gov System Login</h1>
+<div class="box">
+    <h2>Вход в систему</h2>
 
-<input type="text" id="login" placeholder="Логин">
-<input type="password" id="password" placeholder="Пароль">
+    <input type="text" id="username" placeholder="Логин">
+    <input type="password" id="password" placeholder="Пароль">
 
-<button onclick="login()">Войти как Admin</button>
-<button class="user-btn" onclick="guestLogin()">Войти как User</button>
-
-<p>Secure Government Access</p>
+    <button onclick="login()">Войти</button>
+    <button class="secondary" onclick="register()">Регистрация</button>
 </div>
 
 <script>
+
+// =======================
+// LOGIN
+// =======================
 function login(){
 
-    let login = document.getElementById("login").value;
-    let password = document.getElementById("password").value;
+    const user = document.getElementById("username").value;
+    const pass = document.getElementById("password").value;
 
-    if(login === "admin" && password === "1234"){
+    const savedUser = localStorage.getItem("user");
+    const savedPass = localStorage.getItem("pass");
+
+    if(user === savedUser && pass === savedPass){
         localStorage.setItem("role","admin");
         window.location.href = "main.html";
-    }else{
-        alert("Неверный логин или пароль");
+    }
+    else{
+        localStorage.setItem("role","user");
+        window.location.href = "main.html";
     }
 }
 
-function guestLogin(){
-    localStorage.setItem("role","user");
-    window.location.href = "main.html";
+
+// =======================
+// REGISTER (creates admin)
+// =======================
+function register(){
+
+    const user = document.getElementById("username").value;
+    const pass = document.getElementById("password").value;
+
+    if(!user || !pass){
+        alert("Введите логин и пароль");
+        return;
+    }
+
+    localStorage.setItem("user", user);
+    localStorage.setItem("pass", pass);
+
+    alert("Админ успешно создан!");
 }
+
 </script>
 
 </body>
