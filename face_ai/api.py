@@ -1,36 +1,33 @@
-import shutil
-from fastapi import FastAPI, UploadFile, File, Form
+from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
-from project_gov.face_ai.main import recognize_person, add_person
 
-app = FastAPI()
+app = FastAPI(title="Connection Test API")
 
 app.add_middleware(
     CORSMiddleware,
     allow_origins=["*"],
+    allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
 )
 
-@app.post("/recognize")
-async def recognize(file: UploadFile = File(...)):
-    path = "temp.jpg"
+# TEST CONNECTION
 
-    with open(path, "wb") as buffer:
-        shutil.copyfileobj(file.file, buffer)
+@app.get("/ping")
+def ping():
+    return {
+        "status": "success",
+        "message": "Backend is connected with frontend (index.html)",
+        "connection": True
+    }
 
-    return recognize_person(path)
+
+
+# MOCK REGISTER
 
 @app.post("/register")
-async def register(
-    name: str = Form(...),
-    file: UploadFile = File(...)
-):
-    path = "temp_add.jpg"
-
-    with open(path, "wb") as buffer:
-        shutil.copyfileobj(file.file, buffer)
-
-    ok = add_person(name, path)
-
-    return {"status":"success" if ok else "error"}
+def register():
+    return {
+        "status": "success",
+        "message": "Register endpoint is working (frontend connected)"
+    }
