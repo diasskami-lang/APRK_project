@@ -259,7 +259,7 @@ http://localhost:8000
 
 
 
-
+```sql
 
 CREATE TABLE people (
     id SERIAL PRIMARY KEY,
@@ -267,9 +267,6 @@ CREATE TABLE people (
     photo TEXT,
     profile_link TEXT
 );
-
-
-
 
 CREATE TABLE ministries (
     id SERIAL PRIMARY KEY,
@@ -306,3 +303,8 @@ CREATE TABLE full_people_info (
     start_date DATE,
     end_date DATE
 );
+
+```
+
+
+
