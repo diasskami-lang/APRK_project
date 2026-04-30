@@ -257,3 +257,52 @@ http://localhost:8000
 ```
 
 
+
+
+
+
+CREATE TABLE people (
+    id SERIAL PRIMARY KEY,
+    full_name VARCHAR(255) NOT NULL,
+    photo TEXT,
+    profile_link TEXT
+);
+
+
+
+
+CREATE TABLE ministries (
+    id SERIAL PRIMARY KEY,
+    name VARCHAR(255) NOT NULL
+);
+
+CREATE TABLE positions (
+    id SERIAL PRIMARY KEY,
+    title VARCHAR(255) NOT NULL,
+    ministry_id INT,
+    FOREIGN KEY (ministry_id) REFERENCES ministries(id)
+);
+
+
+CREATE TABLE appointments (
+    id SERIAL PRIMARY KEY,
+    person_id INT,
+    position_id INT,
+    start_date DATE,
+    end_date DATE,
+    FOREIGN KEY (person_id) REFERENCES people(id),
+    FOREIGN KEY (position_id) REFERENCES positions(id)
+);
+
+
+
+CREATE TABLE full_people_info (
+    id SERIAL PRIMARY KEY,
+    full_name VARCHAR(255) NOT NULL,
+    photo TEXT,
+    profile_link TEXT,
+    position VARCHAR(255),
+    ministry VARCHAR(255),
+    start_date DATE,
+    end_date DATE
+);
